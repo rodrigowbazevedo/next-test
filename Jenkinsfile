@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'node:16' }
-    }
+    agent any
 
     stages {
         stage('Prepare') {
@@ -16,8 +14,6 @@ pipeline {
         stage('Build') {
             steps{
                 echo 'Building..'
-                sh 'node --version'
-                sh 'ls -l'
             }
         }
     }
