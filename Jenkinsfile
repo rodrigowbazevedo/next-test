@@ -8,11 +8,11 @@ pipeline {
             }
             steps{
                 echo 'Building..'
-                sh 'node --version'
                 sh 'npm install'
                 sh 'npm run build'
                 sh 'npm run export'
                 sh 'ls -l out'
+                stash inlcudes: 'out/**/*', name: 'build'
             }
         }
 
@@ -20,9 +20,11 @@ pipeline {
             agent {
                 label 'inbound-agent'
             }
-            steps{
+            steps {
+                unstash: 'build'
                 sh 'pwd'
                 sh 'ls -l'
+                sh 'ls -l out'
             }
         }
     }
