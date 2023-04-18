@@ -17,7 +17,9 @@ pipeline {
             steps{
                 echo 'Building..'
                 sh 'node --version'
-                sh 'ls -l'
+                sh 'npm run build'
+                sh 'npm run export'
+                sh 'ls -l out'
             }
         }
     }
