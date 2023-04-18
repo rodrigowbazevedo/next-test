@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'docker-node-agent'
-    }
+    agent any
 
     stages {
         stage('Prepare') {
