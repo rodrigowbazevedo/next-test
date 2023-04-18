@@ -21,7 +21,7 @@ pipeline {
                 label 'inbound-agent'
             }
             steps {
-                unstash: 'build'
+                unstash 'build'
                 sh 'pwd'
                 sh 'ls -l'
                 sh 'ls -l out'
