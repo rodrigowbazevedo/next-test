@@ -12,7 +12,7 @@ pipeline {
                 sh 'npm run build'
                 sh 'npm run export'
                 sh 'ls -l out'
-                stash inlcudes: 'out/**/*', name: 'build'
+                stash includes: 'out/**/*', name: 'build'
             }
         }
 
