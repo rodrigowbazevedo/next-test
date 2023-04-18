@@ -16,7 +16,6 @@ pipeline {
         stage('Build') {
             steps{
                 echo 'Building..'
-                sh 'sleep 20'
                 sh 'node --version'
                 sh 'ls -l'
             }
