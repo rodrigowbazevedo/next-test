@@ -21,7 +21,6 @@ pipeline {
             }
             steps {
                 echo 'Exporting..'
-                sh 'npm install'
                 sh 'npm run export'
                 sh 'ls -l out'
                 stash includes: 'out/**/*', name: 'build'
@@ -34,8 +33,8 @@ pipeline {
             }
             steps {
                 unstash 'build'
-                sh 'ls -l'
                 sh 'ls -l out'
+                archiveArtifacts artifacts: 'out/'
             }
         }
     }
