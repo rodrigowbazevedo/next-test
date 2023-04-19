@@ -12,6 +12,16 @@ pipeline {
                 echo 'Building..'
                 sh 'npm install'
                 sh 'npm run build'
+            }
+        }
+
+        stage('Export') {
+            agent {
+                dockerfile true
+            }
+            steps {
+                echo 'Exporting..'
+                sh 'npm install'
                 sh 'npm run export'
                 sh 'ls -l out'
                 stash includes: 'out/**/*', name: 'build'
