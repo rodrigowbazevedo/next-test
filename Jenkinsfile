@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-        stage('Teste') {
+        stage('Publish') {
             agent {
                 label 'inbound-agent'
             }
