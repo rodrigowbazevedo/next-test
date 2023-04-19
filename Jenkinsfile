@@ -1,13 +1,14 @@
 pipeline {
     agent {
-        label 'jenkins-slave'
+        docker {
+            image 'node:16-alpine'
+        }
     }
 
     stages {
         stage('Teste') {
             steps {
-                // unstash 'build'
-                sh 'ls -l'
+                sh 'node --version'
             }
         }
     }
