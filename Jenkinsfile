@@ -9,9 +9,11 @@ pipeline {
                 }
             }
             steps {
-                commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
+                script {
+                    commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
 
-                echo commitId
+                    echo commitId
+                }
             }
         }
 
