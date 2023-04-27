@@ -10,7 +10,8 @@ pipeline {
             }
             steps {
                 echo 'Building..'
-                echo $BUILD_NUMBER
+                echo "${GIT_COMMIT}"
+                echo "${BUILD_NUMBER}"
                 sh 'npm install'
                 sh 'npm run build'
                 stash includes: 'out/**/*', name: 'build'
