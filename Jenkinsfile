@@ -2,21 +2,6 @@ pipeline {
     agent none
 
     stages {
-        stage('Teste') {
-            agent {
-                docker {
-                    image 'alpine/git'
-                }
-            }
-            steps {
-                script {
-                    commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
-
-                    echo commitId
-                }
-            }
-        }
-
         stage('Build') {
             agent {
                 docker {
@@ -36,6 +21,7 @@ pipeline {
             }
             steps {
                 echo 'Exporting..'
+                echo currentBuild.number
                 sh 'npm run export'
                 sh 'ls -l out'
                 stash includes: 'out/**/*', name: 'build'
