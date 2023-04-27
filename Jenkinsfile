@@ -10,6 +10,7 @@ pipeline {
             }
             steps {
                 echo 'Building..'
+                echo $BUILD_NUMBER
                 sh 'npm install'
                 sh 'npm run build'
             }
@@ -21,7 +22,6 @@ pipeline {
             }
             steps {
                 echo 'Exporting..'
-                echo currentBuild.number
                 sh 'npm run export'
                 sh 'ls -l out'
                 stash includes: 'out/**/*', name: 'build'
