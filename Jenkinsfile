@@ -10,7 +10,6 @@ pipeline {
             }
             steps {
                 echo 'Building..'
-                echo $GIT_COMMIT
                 script {
                     def build = currentBuild
 
