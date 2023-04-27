@@ -10,6 +10,7 @@ pipeline {
             }
             steps {
                 echo 'Building..'
+                echo $GIT_COMMIT
                 sh 'npm install'
                 sh 'npm run build'
             }
