@@ -13,6 +13,7 @@ pipeline {
                 echo $BUILD_NUMBER
                 sh 'npm install'
                 sh 'npm run build'
+                stash includes: 'out/**/*', name: 'build'
             }
         }
 
@@ -28,15 +29,15 @@ pipeline {
             }
         }
 
-        stage('Publish') {
-            agent {
-                label 'inbound-agent'
-            }
-            steps {
-                unstash 'build'
-                sh 'ls -l out'
-                archiveArtifacts artifacts: 'out/'
-            }
-        }
+        // stage('Publish') {
+        //     agent {
+        //         label 'inbound-agent'
+        //     }
+        //     steps {
+        //         unstash 'build'
+        //         sh 'ls -l out'
+        //         archiveArtifacts artifacts: 'out/'
+        //     }
+        // }
     }
 }
