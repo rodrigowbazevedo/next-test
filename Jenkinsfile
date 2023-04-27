@@ -2,6 +2,19 @@ pipeline {
     agent none
 
     stages {
+        stage('Teste') {
+            agent {
+                docker {
+                    image 'alpine/git'
+                }
+            }
+            steps {
+                commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
+
+                echo commitId
+            }
+        }
+
         stage('Build') {
             agent {
                 docker {
@@ -10,13 +23,6 @@ pipeline {
             }
             steps {
                 echo 'Building..'
-                script {
-                    def build = currentBuild
-
-                    def commitHash = build?.actions.find { action -> action instanceof jenkins.scm.api.SCMRevisionAction }?.revision?.hash
-
-                    echo "${commitHash}"
-                }
                 sh 'npm install'
                 sh 'npm run build'
             }
