@@ -10,7 +10,13 @@ pipeline {
             }
             steps {
                 echo 'Building..'
-                echo $GIT_COMMIT
+                script {
+                    def build = currentBuild
+
+                    def commitHash = build?.actions.find { action -> action instanceof jenkins.scm.api.SCMRevisionAction }?.revision?.hash
+
+                    echo "${commitHash}"
+                }
                 sh 'npm install'
                 sh 'npm run build'
             }
